@@ -38,6 +38,52 @@ nav div{display:flex;width:100%;max-width:480px}
 nav button{flex:1;padding:14px 4px;background:none;font-size:13px;font-weight:600;color:var(--mute)}
 nav button[aria-current="page"]{color:var(--acc)}
 .hide{display:none}
+button.ib{width:100%;background:none;text-align:left;color:inherit}
+.card.dc{background:linear-gradient(135deg,#1FB57A,#0B6E5F);color:#fff}
+.dpill{align-self:flex-start;background:#fff;color:#0B6E5F;border-radius:20px;padding:10px 18px;font-weight:800}
+.cd{background:var(--surf);border-radius:24px;padding:18px;margin:14px 0}
+.cd .act{background:var(--bg);padding:12px 4px}
+.ch{display:flex;justify-content:space-between;align-items:center;width:100%;background:none;color:var(--mute);font-size:15px;padding:0 0 8px}
+.chev{transition:transform .25s}
+.cd.c .cb{display:none}
+.cd.c .chev{transform:rotate(180deg)}
+.it{display:flex;align-items:center;gap:14px;padding:10px 0}
+.it .ti{flex:1}
+.it b{display:block;font-size:17px}
+.it small{color:var(--mute);font-size:14px}
+.it .am{font-weight:600;font-size:16px;white-space:nowrap}
+.mc{flex:none;width:52px;height:34px;border-radius:6px;background:linear-gradient(135deg,var(--card),#1B3A5C)}
+.pl{display:flex;align-items:center;gap:14px;width:100%;background:none;color:var(--acc);font-weight:600;font-size:18px;padding:6px 0;text-align:left}
+.pl i{flex:none;width:48px;height:48px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:28px;font-weight:400}
+.pill{background:var(--acc);color:var(--onacc);border-radius:20px;padding:8px 16px;font-weight:600;font-size:14px}
+.oi{flex:none;width:48px;height:48px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:22px}
+button{transition:transform .15s,background .2s,opacity .2s,color .2s}
+button:active{transform:scale(.97)}
+section{animation:fi .4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes fi{from{opacity:0;transform:translateY(12px)}}
+@keyframes fo{from{opacity:0}}
+@keyframes su{from{transform:translateY(100%)}}
+@keyframes pop{from{transform:scale(0)}}
+.scr{transition:opacity .4s}
+.scr:not(.hide){animation:fo .4s}
+#sh{animation:fo .25s}
+.panel{animation:su .35s cubic-bezier(.2,.8,.2,1)}
+.ok{flex:none;width:26px;height:26px;border-radius:50%;background:var(--acc);color:var(--onacc);display:flex;align-items:center;justify-content:center;font-size:14px;animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
+#bd{display:none;background:var(--neg);color:#fff;font-style:normal;font-size:11px;border-radius:9px;padding:1px 6px;margin-left:2px;animation:pop .3s}
+.pr{background:var(--surf);border-radius:18px;padding:14px;margin:10px 0}
+.pr b{font-size:16px}
+.pr p{font-size:14px;opacity:.85;margin:4px 0 10px}
+.pb2{font-size:26px;font-weight:800;margin:4px 0}
+.pr .row{margin:8px 0 0}
+.pr .act{background:var(--bg);padding:12px 4px}
+.pr>.act{width:100%}
+.pr.dp{background:linear-gradient(135deg,#1FB57A,#0B6E5F);color:#fff}
+.pr.dp .act{background:rgba(255,255,255,.2);color:#fff}
+.nt{display:flex;gap:10px;align-items:flex-start;background:var(--surf);border-left:4px solid var(--acc);border-radius:14px;padding:12px;margin:10px 0;font-size:14px;animation:fi .4s both}
+@media (prefers-reduced-motion:reduce){section,.panel,#sh,.nt,#tt,.ok,#bd,.scr{animation:none;transition:none}}
+#tt{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:12px;right:12px;max-width:456px;margin:0 auto;z-index:40;background:var(--ink);color:var(--bg);border-radius:16px;padding:14px;display:flex;gap:10px;align-items:center;justify-content:space-between;font-size:14px;animation:dn .35s}
+#tt.hide{display:none}
+@keyframes dn{from{opacity:0;transform:translateY(-20px)}}
 .seg{display:flex;gap:8px;overflow-x:auto;margin:12px 0}
 .seg .chip{flex:none;padding:10px 14px}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
@@ -124,7 +170,7 @@ label.tx{margin:0;font-size:inherit;color:inherit}
 </div>
 <div id="app">
  <section id="home">
-  <div class="hd"><h1>Основной счёт</h1><button class="lnk" id="eye">Скрыть баланс</button></div>
+  <div class="hd"><h1>Основной счёт</h1><div><button class="lnk" data-act="bell" aria-label="Уведомления">🔔<i id="bd"></i></button><button class="lnk" id="eye">Скрыть баланс</button></div></div>
   <div class="bal" id="bal"></div>
   <div class="card"><span>Дебетовая карта</span><b>•••• 4821</b><span>TEMIRLAN KUDAIBERGENOV · 09/29</span></div>
   <div class="row">
@@ -132,7 +178,14 @@ label.tx{margin:0;font-size:inherit;color:inherit}
    <button class="act" data-act="scan">Сканировать QR</button>
    <button class="act" data-act="myqr">Мой QR</button>
   </div>
+  <div id="hn"></div>
+  <div id="hp"></div>
   <div class="bans" id="ban" aria-label="Акции и новости"></div>
+  <div class="cd"><button class="ch" data-col="off">Предложения<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></svg></button><div class="cb">
+   <div id="dof"></div>
+   <div class="it"><span class="oi">💳</span><div class="ti"><small>Кредит наличными</small><b>до 5 000 000 ₸</b></div><button class="pill" data-act="offer" data-o="Кредит наличными">Получить</button></div>
+   <div class="it"><span class="oi">🛍️</span><div class="ti"><small>Рассрочка 0-0-12</small><b>в 500+ магазинах</b></div><button class="pill" data-act="offer" data-o="Рассрочка 0-0-12">Получить</button></div>
+  </div></div>
   <h2>Последние операции</h2>
   <div id="recent"></div>
  </section>
@@ -148,6 +201,7 @@ label.tx{margin:0;font-size:inherit;color:inherit}
   <h2>Платежи и услуги</h2>
   <div class="grid" id="cats"></div>
   <h2>Мои счета</h2>
+  <div id="depc"></div>
   <div id="wal"></div>
   <label for="cf">Конвертация по курсу (демо)</label>
   <div class="row">
@@ -172,10 +226,20 @@ label.tx{margin:0;font-size:inherit;color:inherit}
    <input id="q" type="search" placeholder="Поиск: заправки, переводы, кафе">
    <label for="fc">Показать</label>
    <select id="fc"><option value="all">Все операции</option><option value="exp">Расходы</option><option value="inc">Доходы</option><option value="tr">Переводы</option></select>
+   <h2>Итоги за месяц</h2><div id="mr"></div>
    <h2>Расходы по категориям</h2><div id="an"></div>
    <h2>Операции</h2><div id="all"></div>
   </div>
   <div id="hfav" class="hide"><h2>Избранные получатели</h2><div id="favl"></div></div>
+ </section>
+ <section id="bank" class="hide">
+  <button class="lnk" data-go="home" aria-label="Назад" style="font-size:24px;padding:10px 0 0">←</button>
+  <h1 style="font-size:32px;color:var(--ink);font-weight:800;margin:4px 0 4px">Мой банк</h1>
+  <div id="bk"></div>
+ </section>
+ <section id="acc" class="hide">
+  <button class="lnk" data-go="bank" aria-label="Назад" style="font-size:24px;padding:10px 0 0">←</button>
+  <div id="ad"></div>
  </section>
  <section id="me" class="hide">
   <h2>Профиль</h2>
@@ -184,10 +248,14 @@ label.tx{margin:0;font-size:inherit;color:inherit}
   <div class="tx"><span>Валюта счёта</span><em>Тенге (KZT)</em></div>
   <div class="tx"><span>Вход по PIN-коду</span><em>Включён</em></div>
   <div class="tx"><span>Лимит переводов в сутки</span><em>1 000 000 ₸</em></div>
+  <h2>Уведомления</h2><div id="nl"></div>
+  <button class="act" style="width:100%;margin-top:10px" data-act="zero">Демо: обнулить основной счёт</button>
+  <button class="act" style="width:100%;margin-top:10px" data-act="skip">Демо: прокрутить время на 3 часа</button>
   <button class="out" id="logout">Выйти</button>
   <p class="msg">Это демо-версия: данные вымышленные и хранятся только на этой странице.</p>
  </section>
 </div>
+<div id="tt" class="hide" role="status"></div>
 <div id="st" class="hide" role="dialog" aria-label="Новости банка"><div class="pb" id="pb"></div><button id="sx" aria-label="Закрыть">✕</button><div class="blob" style="width:260px;height:260px;left:-80px;top:10%"></div><div class="blob" style="width:200px;height:200px;right:-60px;bottom:8%;animation-delay:-3s"></div><div class="sc" id="sc" style="position:relative;max-width:400px"></div></div>
 <div id="sh" class="hide"></div>
 <nav class="hide"><div id="tabs">
@@ -219,13 +287,6 @@ var ops=[
  {n:"Курсы английского",d:"14 сентября",s:-45000,c:"Образование"}
 ];
 function fmt(v){return v.toLocaleString("ru-RU",{minimumFractionDigits:2,maximumFractionDigits:2})+" ₸"}
-function row(o){return '<div class="tx"><span>'+o.n+'<small>'+o.d+'</small></span><em class="'+(o.s<0?'neg':'')+'">'+(o.s>0?'+':o.s<0?'−':'')+fmt(Math.abs(o.s))+'</em></div>'}
-function render(){
- renderFavs();
- document.getElementById("bal").textContent=fmt(balance);
- document.getElementById("recent").innerHTML=ops.slice(0,3).map(row).join("");
- document.getElementById("all").innerHTML=ops.map(row).join("");
-}
 var rates={KZT:1,USD:505,EUR:590,RUB:6.2,CNY:70},sym={KZT:"₸",USD:"$",EUR:"€",RUB:"₽",CNY:"¥"},w={USD:120,EUR:0,RUB:5000,CNY:800},bonus=12400,hidden=false,found=null,sh=document.getElementById("sh");
 function get(c){return c==="KZT"?balance:w[c]}
 function put(c,v){if(c==="KZT")balance=v;else w[c]=v}
@@ -235,7 +296,8 @@ function msg(id,t,e){var o=document.getElementById(id);o.className="msg"+(e?" er
 function addOp(n,s,c,x){ops.unshift(Object.assign({n:n,d:"Сегодня",s:s,c:c},x||{}))}
 function row(o,i){return '<button class="tx" data-i="'+i+'"><span>'+o.n+'<small>'+o.d+', '+o.c+'</small></span><em class="'+(o.s<0?'neg':'')+'">'+(o.s>0?'+':o.s<0?'−':'')+fmt(Math.abs(o.s))+'</em></button>'}
 function render(){
- document.getElementById("bal").textContent=hidden?"•••••• ₸":fmt(balance);
+ renderFavs();renderExtra();checkFunds();
+ animBal();
  document.getElementById("eye").textContent=hidden?"Показать баланс":"Скрыть баланс";
  document.getElementById("recent").innerHTML=ops.slice(0,3).map(row).join("");
  var words=document.getElementById("q").value.toLowerCase().split(/\s+/).filter(Boolean).map(function(x){return x.length>4?x.slice(0,-2):x});
@@ -243,15 +305,23 @@ function render(){
  document.getElementById("all").innerHTML=list.length?list.map(function(x){return row(x.o,x.i)}).join(""):'<p class="msg">Ничего не найдено. Попробуйте «кафе» или «переводы».</p>';
  var sums={},tot=0;ops.forEach(function(o){if(o.s<0&&o.c!=="Свои счета"){sums[o.c]=(sums[o.c]||0)-o.s;tot-=o.s}});
  document.getElementById("an").innerHTML=Object.keys(sums).sort(function(a,b){return sums[b]-sums[a]}).map(function(c){return '<div class="an"><span>'+c+'</span><b>'+fmt(sums[c])+'</b></div><div class="trk"><i style="width:'+Math.round(sums[c]/tot*100)+'%"></i></div>'}).join("");
- document.getElementById("wal").innerHTML=["KZT","USD","EUR","RUB","CNY"].map(function(c){return '<div class="tx"><span>'+c+'</span><em>'+fm(get(c),c)+'</em></div>'}).join("")+[["Депозит",ac.dep],["Накопительный",ac.sav],["Брокерский счёт",ac.brk]].map(function(a){return '<div class="tx"><span>'+a[0]+'</span><em>'+fm(a[1],"KZT")+'</em></div>'}).join("")+'<div class="tx"><span>Бонусы</span><em>'+fm(bonus,"KZT")+'</em></div>';
+ document.getElementById("wal").innerHTML=["KZT","USD","EUR","RUB","CNY"].map(function(c){return '<div class="tx"><span>'+c+'</span><em>'+fm(get(c),c)+'</em></div>'}).join("")+[["Депозит",ac.dep,depOpen],["Брокерский счёт",ac.brk,1],["Кредит (долг)",debt,debt>0]].concat(AC.filter(function(a){return a[0].charAt(0)==="x"}).map(function(a){return [a[1],ac[a[0]],1]})).filter(function(a){return a[2]}).map(function(a){return '<div class="tx"><span>'+a[0]+'</span><em>'+fm(a[1],"KZT")+'</em></div>'}).join("")+'<div class="tx"><span>Бонусы</span><em>'+fm(bonus,"KZT")+'</em></div>';
 }
 function qr(seed){var h=0,i,x,y,o='<svg viewBox="-1 -1 23 23" width="200" height="200" role="img" aria-label="QR-код (демо)"><rect x="-1" y="-1" width="23" height="23" fill="#fff"/>';
  for(i=0;i<seed.length;i++)h=(h*31+seed.charCodeAt(i))>>>0;
  for(y=0;y<21;y++)for(x=0;x<21;x++){if((x<8&&y<8)||(x>12&&y<8)||(x<8&&y>12))continue;h=(h*1664525+1013904223)>>>0;if((h>>>24)&1)o+='<rect x="'+x+'" y="'+y+'" width="1" height="1" fill="#000"/>'}
  [[0,0],[14,0],[0,14]].forEach(function(p){o+='<rect x="'+p[0]+'" y="'+p[1]+'" width="7" height="7" fill="#000"/><rect x="'+(p[0]+1)+'" y="'+(p[1]+1)+'" width="5" height="5" fill="#fff"/><rect x="'+(p[0]+2)+'" y="'+(p[1]+2)+'" width="3" height="3" fill="#000"/>'});
  return '<div style="text-align:center">'+o+'</svg></div>'}
-function openSh(h){sh.innerHTML='<div class="panel">'+h+'<button class="pri" id="cl">Закрыть</button></div>';sh.classList.remove("hide")}
-function closeSh(){sh.classList.add("hide")}
+var closeId=0;
+function openSh(h){closeId++;sh.style.opacity="";sh.innerHTML='<div class="panel">'+h+'<button class="pri" id="cl">Закрыть</button></div>';sh.classList.remove("hide")}
+function closeSh(){var p=sh.firstChild,c=++closeId;if(!p||sh.classList.contains("hide"))return;p.style.transition="transform .25s";p.style.transform="translateY(100%)";sh.style.transition="opacity .25s";sh.style.opacity=0;setTimeout(function(){if(c===closeId){sh.classList.add("hide");sh.style.opacity=""}},250)}
+function animBal(){var el=document.getElementById("bal");
+ if(hidden){el.textContent="•••••• ₸";shown=balance;return}
+ var from=shown,to=balance,t0=null;
+ if(Math.abs(to-from)<1||matchMedia("(prefers-reduced-motion:reduce)").matches){el.textContent=fmt(to);shown=to;return}
+ cancelAnimationFrame(raf);
+ function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/600),e=1-Math.pow(1-k,3);shown=from+(to-from)*e;el.textContent=fmt(shown);if(k<1)raf=requestAnimationFrame(step)}
+ raf=requestAnimationFrame(step)}
 var src="card";
 document.getElementById("eye").addEventListener("click",function(){hidden=!hidden;render()});
 document.getElementById("q").addEventListener("input",render);document.getElementById("fc").addEventListener("change",render);
@@ -262,6 +332,15 @@ document.addEventListener("click",function(e){
  if(b=t.closest("[data-i]")){var i=+b.dataset.i,o=ops[i];
   openSh('<h2>'+o.n+'</h2><p>'+o.d+', '+o.c+'</p><div class="bal" style="font-size:28px">'+(o.s>0?'+':o.s<0?'−':'')+fmt(Math.abs(o.s))+'</div><p class="msg">Чек № '+(700100+i*137)+'. Статус: выполнено.</p>'+(o.to?'<button class="pri" style="margin-bottom:10px" data-act="repeat" data-r="'+i+'">Повторить перевод</button>':''));return}
  if(b=t.closest("[data-src]")){src=b.dataset.src;document.querySelectorAll("[data-src]").forEach(function(x){x.setAttribute("aria-pressed",x===b)});return}
+ if(b=t.closest("[data-ac]")){selAcc=b.dataset.ac;renderHome();go("acc");return}
+ if(b=t.closest("[data-to]")){go(b.dataset.to);return}
+ if(b=t.closest("[data-col]")){var ck=b.dataset.col;col[ck]=!col[ck];b.closest(".cd").classList.toggle("c",!!col[ck]);return}
+ if(b=t.closest("[data-xt]")){xtop(b.dataset.xt);return}
+ if(b=t.closest("[data-xc]")){var xk=b.dataset.xc;openSh('<h2>Закрыть счёт «'+nm(xk)+'»?</h2><p>Остаток '+fm(ac[xk],"KZT")+' вернётся на основной счёт.</p><button class="pri" style="margin-bottom:10px;background:var(--neg);color:#fff" data-act="xclosego" data-k="'+xk+'">Закрыть счёт</button>');return}
+ if(t.closest("[data-ndis]")){dismissed=ac.dep;render();return}
+ if(b=t.closest("[data-term]")){term=+b.dataset.term;offerCredit(cShort);return}
+ if(t.closest("[data-nx]")){document.getElementById("tt").classList.add("hide");return}
+ if(t.closest("[data-nact]")){document.getElementById("tt").classList.add("hide");openTop();return}
  if(b=t.closest("[data-m]")){mode=b.dataset.m;renderForm();return}
  if(b=t.closest("[data-ht]")){var ht=b.dataset.ht;document.getElementById("hops").classList.toggle("hide",ht!=="ops");document.getElementById("hfav").classList.toggle("hide",ht!=="fav");document.querySelectorAll("[data-ht]").forEach(function(x){x.setAttribute("aria-pressed",x===b)});return}
  if(b=t.closest("[data-fd]")){favs.splice(+b.dataset.fd,1);render();buzz();return}
@@ -278,6 +357,31 @@ document.addEventListener("click",function(e){
   else{var amt=src==="inst"?292:3500;if(amt>balance)return msg("qm","Недостаточно средств на карте.",1);balance-=amt;addOp("Traveler\'s Coffee",-amt,src==="inst"?"Рассрочка 0-0-12":"Кафе")}
   render();buzz();msg("qm","Оплачено.")}
  if(a==="repeat"){var q=ops[+b.dataset.r];mode=q.m||"ph";renderForm();document.getElementById("f1").value=q.to;if(q.x)document.getElementById("f2").value=q.x;document.getElementById("fs").value=-q.s;closeSh();go("pay")}
+ if(a==="depopen")openSh('<h2>Открыть депозит</h2><p>Название можно оставить или изменить, например «На отпуск».</p><label for="dn">Название депозита</label><input id="dn" maxlength="24" value="Депозит"><button class="pri" style="margin-bottom:10px" data-act="depopengo">Открыть</button>');
+ if(a==="depopengo"){depName=val("dn")||"Депозит";AC.filter(function(x){return x[0]==="dep"})[0][1]=depName;depOpen=true;render();renderForm();buzz();closeSh();go("bank");notify("Депозит «"+depName+"» открыт. Теперь его можно пополнить с основного счёта.","","","🎉")}
+ if(a==="depclose")openSh('<h2>Закрыть депозит «'+depName+'»?</h2><p>'+(ac.dep>0?'На депозите '+fm(ac.dep,"KZT")+'. Эта сумма вернётся на основной счёт.':'На депозите нет средств.')+'</p><button class="pri" style="margin-bottom:10px;background:var(--neg);color:#fff" data-act="depclosego">Закрыть депозит</button>');
+ if(a==="depclosego"){var dv=ac.dep;balance+=dv;if(dv>0)addOp("Закрытие депозита",dv,"Свои счета",{amt:dv});ac.dep=0;depOpen=false;dismissed=0;AC.filter(function(x){return x[0]==="dep"})[0][1]="Депозит";depName="Депозит";render();renderForm();buzz();closeSh();go("bank");notify("Депозит закрыт."+(dv>0?" На основной счёт возвращено "+fmt(dv)+".":""),"","","✓")}
+ if(a==="offer")notify("Заявка на «"+b.dataset.o+"» отправлена. Мы сообщим о решении.","","","📨");
+ if(a==="newacc")openSh('<h2>Новый счёт</h2><p>Обычный счёт в тенге. Пополняйте его с основного счёта и закрывайте в любой момент.</p><label for="an2">Название счёта</label><input id="an2" maxlength="24" placeholder="Например, Путешествия"><button class="pri" style="margin-bottom:10px" data-act="newaccgo">Открыть счёт</button>');
+ if(a==="newaccgo"){var an=val("an2")||"Счёт "+(nextAcc+1),key="x"+nextAcc++;ac[key]=0;AC.push([key,an]);render();renderForm();buzz();closeSh();go("bank");notify("Открыт новый счёт «"+an+"». Пополните его с основного счёта.","","","🎉")}
+ if(a==="xtopdo"){var xk2=b.dataset.k,xs=parseFloat(val("xs"));
+  if(!(xs>0))return msg("xm","Укажите сумму больше нуля.",1);
+  if(xs<=balance){doOwn("main",xk2,xs);closeSh();notify("Счёт «"+nm(xk2)+"» пополнен на "+fmt(xs)+".","","","💰")}
+  else{pend={m:"own",from:"main",t:xk2,sum:xs};offerCredit(xs-balance)}}
+ if(a==="xclosego"){var k3=b.dataset.k,nn=nm(k3),bv=ac[k3];balance+=bv;if(bv>0)addOp("Закрытие счёта «"+nn+"»",bv,"Свои счета",{amt:bv});delete ac[k3];AC=AC.filter(function(x){return x[0]!==k3});render();renderForm();buzz();closeSh();go("bank");notify("Счёт «"+nn+"» закрыт."+(bv>0?" На основной счёт возвращено "+fmt(bv)+".":""),"","","✓")}
+ if(a==="bell"){read=notes.length;renderNotes();openSh('<h2>Уведомления</h2>'+notesHtml())}
+ if(a==="depgo")offerDep();
+ if(a==="depdo"){var ds=parseFloat(val("ds"));
+  if(!(ds>=1000))return msg("dm","Минимальная сумма перевода: 1 000 ₸.",1);
+  if(ds<=balance){doOwn("main","dep",ds);closeSh();notify("Депозит пополнен: +"+fmt(ds)+". Теперь на депозите "+fmt(ac.dep)+".","","","💰")}
+  else{pend={m:"own",from:"main",t:"dep",sum:ds};offerCredit(ds-balance)}}
+ if(a==="creditgo"){balance+=cShort;debt+=cShort;addOp("Кредит",cShort,"Кредит");var pp=pend;pend=null;
+  if(pp){if(pp.m==="own")doOwn(pp.from,pp.t,pp.sum);else doBrk(pp.sum)}
+  render();buzz();closeSh();toast("Кредит на "+fmt(cShort)+" оформлен, перевод выполнен.")}
+ if(a==="toptop"){var ta=parseFloat(val("ts"));if(!(ta>0))return msg("tm","Укажите сумму больше нуля.",1);
+  depOpen=true;ac.dep+=ta;addOp("Пополнение депозита",0,"Свои счета",{amt:ta});render();renderForm();buzz();closeSh();toast("Депозит пополнен на "+fmt(ta)+".")}
+ if(a==="zero"){balance=0;render();toast("Основной счёт обнулён (демо). Нажмите «прокрутить время», чтобы увидеть уведомление.")}
+ if(a==="skip"){skew+=3*3600000;checkFunds()}
  if(a==="gpay"){
   var cn=b.dataset.c,cc=cats[cn],gp=val("gp"),ga=val("ga"),gs=parseFloat(val("gs"));
   if(cn==="Мобильная связь"?ga.replace(/\D/g,"").length<10:ga.length<4)return msg("gm","Заполните поле «"+cc.l+"» полностью.",1);
@@ -302,8 +406,8 @@ document.addEventListener("click",function(e){
   if(found.amt>balance)return msg("bm","Недостаточно средств.",1);
   balance-=found.amt;addOp(found.p,-found.amt,"Коммуналка");render();buzz();msg("bm","Оплачено: "+found.p+", "+fmt(found.amt)+".");found=null}
 });
-var ac={dep:1200000,sav:250000,brk:0},favs=[],lastTx=null,mode="ph",seen=[],cur=0,stT;
-var AC=[["main","Основной счёт"],["dep","Депозит"],["sav","Накопительный"]];
+var ac={dep:0,brk:0},depOpen=false,debt=0,notes=[],skew=0,zeroSince=null,notified=false,pend=null,cShort=0,term=12,ttT,depName="Депозит",read=0,dismissed=0,nextAcc=1,shown=0,raf,lastHn="",favs=[],lastTx=null,mode="ph",seen=[],cur=0,stT;
+var AC=[["main","Основной счёт"],["dep","Депозит"]];
 var MN={ph:"Телефон",card:"Карта",own:"Свои счета",brk:"Брокерский",req:"Реквизиты"};
 var cats={"Мобильная связь":{i:"📱",l:"Номер телефона",p:["Beeline","Tele2","Activ","Altel"]},"Интернет":{i:"🌐",l:"Лицевой счёт",p:["Казахтелеком","Beeline Home","Megaline"]},"ТВ":{i:"📺",l:"Номер договора",p:["Alma TV","Kazakhtelecom IDTV","Smart TV"]},"Коммуналка":{i:"💡",l:"Лицевой счёт",p:["Алсеко","ИВЦ","Астана-РЭК","Астана-Су Арнасы"]},"Образование":{i:"🎓",l:"Номер договора",p:["Детский сад","Колледж","Университет"]},"Налоги и штрафы":{i:"🧾",l:"Номер начисления",p:["Налог на транспорт","Штрафы ПДД","Налог на имущество"]},"Транспорт":{i:"🚌",l:"Номер проездного",p:["Проездной","Парковки"]},"Игры":{i:"🎮",l:"Логин или email",p:["Steam","PlayStation","Google Play"]}};
 var stories=[
@@ -318,13 +422,14 @@ function accv(k){return k==="main"?balance:ac[k]}
 function accs(k,v){if(k==="main")balance=v;else ac[k]=v}
 function nm(k){return AC.filter(function(a){return a[0]===k})[0][1]}
 function L(id,l,at){return '<label for="'+id+'">'+l+'</label><input id="'+id+'" '+at+'>'}
-function opts(sel){return AC.map(function(a){return '<option value="'+a[0]+'"'+(a[0]===sel?' selected':'')+'>'+a[1]+'</option>'}).join("")}
+function opts(sel){return AC.filter(function(a){return a[0]!=="dep"||depOpen}).map(function(a){return '<option value="'+a[0]+'"'+(a[0]===sel?' selected':'')+'>'+a[1]+'</option>'}).join("")}
 function renderForm(){
  document.getElementById("seg").innerHTML=Object.keys(MN).map(function(k){return '<button class="chip" data-m="'+k+'" aria-pressed="'+(k===mode)+'">'+MN[k]+'</button>'}).join("");
  var h="";
  if(mode==="ph")h=L("f1","Телефон получателя",'type="tel" inputmode="tel" placeholder="+7 701 000-00-00"');
  if(mode==="card")h=L("f1","Номер карты",'inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000"');
- if(mode==="own")h='<label for="f1">Откуда</label><select id="f1">'+opts("main")+'</select><label for="f2">Куда</label><select id="f2">'+opts("dep")+'</select>';
+ if(mode==="own"&&AC.filter(function(a){return a[0]!=="dep"||depOpen}).length<2)h='<p class="msg">Для перевода между своими счетами откройте новый счёт или депозит в разделе «Мой банк».</p>';
+ else if(mode==="own")h='<label for="f1">Откуда</label><select id="f1">'+opts("main")+'</select><label for="f2">Куда</label><select id="f2">'+opts(depOpen?"dep":(AC.filter(function(x){return x[0].charAt(0)==="x"})[0]||["main"])[0])+'</select>';
  if(mode==="brk")h='<p class="msg">Брокерский счёт: '+fm(ac.brk,"KZT")+'. Деньги спишутся с основного счёта.</p>';
  if(mode==="req")h=L("f1","IBAN получателя",'placeholder="KZ00 0000 0000 0000 0000" autocapitalize="characters"')+L("f2","Получатель",'placeholder="ФИО или название организации"')+L("f3","Назначение платежа",'placeholder="Например, оплата по договору"');
  h+=L("fs","Сумма, ₸",'type="number" inputmode="decimal" min="1" placeholder="0"');
@@ -368,13 +473,14 @@ document.getElementById("send").addEventListener("click",function(){
  if(m==="req"){
   if(!/^KZ\d{2}[A-Z0-9]{16}$/.test(v.replace(/\s/g,"").toUpperCase()))return show("Проверьте IBAN: он начинается с KZ и содержит 20 символов.",1);
   if(val("f2").length<3)return show("Укажите получателя.",1)}
- if(m==="own"&&v===val("f2"))return show("Выберите разные счета.",1);
+ if(m==="own"&&(!val("f2")||v===val("f2")))return show("Выберите разные счета.",1);
  if(!(sum>0))return show("Укажите сумму больше нуля.",1);
- if(sum>accv(from))return show("Недостаточно средств на счёте «"+nm(from)+"». Доступно: "+fmt(accv(from))+".",1);
+ if(sum>accv(from)){
+  if(from==="main"&&(m==="own"||m==="brk")){pend={m:m,from:from,t:val("f2"),sum:sum};return offerCredit(sum-balance)}
+  return show("Недостаточно средств на счёте «"+nm(from)+"». Доступно: "+fmt(accv(from))+".",1)}
  var label;
- if(m==="own"){var t=val("f2");accs(from,accv(from)-sum);accs(t,accv(t)+sum);
-  addOp("Перевод: "+nm(from)+" → "+nm(t),from==="main"?-sum:t==="main"?sum:0,"Свои счета");label=nm(from)+" → "+nm(t)}
- else if(m==="brk"){balance-=sum;ac.brk+=sum;addOp("Брокерский счёт",-sum,"Инвестиции");label="брокерский счёт"}
+ if(m==="own"){var t=val("f2");doOwn(from,t,sum);label=nm(from)+" → "+nm(t)}
+ else if(m==="brk"){doBrk(sum);label="брокерский счёт"}
  else{
   var x=m==="req"?val("f2"):"";label=m==="ph"?v:m==="card"?"карта •••• "+v.replace(/\D/g,"").slice(-4):x;
   balance-=sum;addOp("Перевод: "+label,-sum,"Переводы",{to:v,m:m,x:x});
@@ -385,10 +491,62 @@ document.getElementById("send").addEventListener("click",function(){
  show("Переведено "+fmt(sum)+": "+label+".");
 });
 renderForm();renderBanners();
+function doOwn(f,t,sum){accs(f,accv(f)-sum);accs(t,accv(t)+sum);addOp("Перевод: "+nm(f)+" → "+nm(t),f==="main"?-sum:t==="main"?sum:0,"Свои счета",{amt:sum});render();buzz()}
+function doBrk(sum){balance-=sum;ac.brk+=sum;addOp("Брокерский счёт",-sum,"Инвестиции");render();buzz()}
+function offerCredit(short){
+ cShort=Math.max(1000,Math.ceil(short/1000)*1000);var r=0.18/12,pm=cShort*r/(1-Math.pow(1+r,-term));
+ openSh('<h2>Недостаточно средств</h2><p>Не хватает '+fmt(short)+'. Можно оформить кредит на '+fmt(cShort)+' под 18% годовых (демо).</p><label>Срок</label><div class="row">'+[6,12,24].map(function(k){return '<button class="chip" data-term="'+k+'" aria-pressed="'+(k===term)+'">'+k+' мес.</button>'}).join("")+'</div><p class="msg">Платёж в месяц: '+fmt(pm)+'. Переплата: '+fmt(pm*term-cShort)+'.</p><button class="pri" style="margin-bottom:10px" data-act="creditgo">Оформить кредит и перевести</button>')}
+function offerDep(){openSh('<h2>Перевод на депозит</h2><p>На основном счёте '+fmt(balance)+'. Минимальная сумма: 1 000 ₸. Если средств не хватит, предложим кредит.</p><label for="ds">Сумма, ₸</label><input id="ds" type="number" inputmode="decimal" min="1000" placeholder="1000"><button class="pri" style="margin-bottom:10px" data-act="depdo">Перевести</button><div id="dm" role="status"></div>')}
+function openTop(){openSh('<h2>Пополнение депозита</h2><p>Источник: карта другого банка (демо).</p><label for="ts">Сумма, ₸</label><input id="ts" type="number" inputmode="decimal" min="1" placeholder="0"><button class="pri" style="margin-bottom:10px" data-act="toptop">Пополнить</button><div id="tm" role="status"></div>')}
+function toast(t,a,l,ic){var e=document.getElementById("tt");
+ e.innerHTML='<span class="ok">'+(ic||"✓")+'</span><span style="flex:1">'+t+'</span>'+(a?'<button class="lnk" style="color:inherit;text-decoration:underline" data-nact="'+a+'">'+l+'</button>':'')+'<button class="lnk" style="color:inherit" data-nx aria-label="Закрыть">✕</button>';
+ e.classList.remove("hide");e.style.animation="none";void e.offsetWidth;e.style.animation="";clearTimeout(ttT);ttT=setTimeout(function(){e.classList.add("hide")},9000)}
+function notesHtml(){return notes.map(function(n){return '<div class="tx"><span>'+n.t+'<small>'+n.d+'</small></span>'+(n.a?'<button class="lnk" data-nact="'+n.a+'">'+n.l+'</button>':'')+'</div>'}).join("")||'<p class="msg">Уведомлений нет.</p>'}
+function renderNotes(){document.getElementById("nl").innerHTML=notesHtml();var u=notes.length-read,b=document.getElementById("bd");b.textContent=u;b.style.display=u>0?"inline-block":"none"}
+function notify(t,a,l,ic){notes.unshift({t:t,a:a,l:l,d:new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"})});renderNotes();toast(t,a,l,ic||"🔔");buzz()}
+function xtop(k){openSh('<h2>Пополнить «'+nm(k)+'»</h2><p>Перевод с основного счёта. Доступно: '+fmt(balance)+'.</p><label for="xs">Сумма, ₸</label><input id="xs" type="number" inputmode="decimal" min="1" placeholder="0"><button class="pri" style="margin-bottom:10px" data-act="xtopdo" data-k="'+k+'">Пополнить</button><div id="xm" role="status"></div>')}
+var selAcc="main",pal=["linear-gradient(135deg,#0B7A75,#12263A)","linear-gradient(135deg,#6C5CE7,#2D1E8A)","linear-gradient(135deg,#E5383B,#7A1B2E)"];
+function mkv(v){return hidden?"•••••• ₸":fmt(v)}
+function hero(t,sub,bal,card,btns){return '<div style="margin-top:24px"><div class="hd"><h1>'+t+'</h1><span style="font-size:14px;color:var(--mute)">'+sub+'</span></div><div class="bal">'+mkv(bal)+'</div>'+card+'<div class="row">'+btns+'</div></div>'}
+function cardH(a,b,c,st){return '<div class="card"'+(st?' style="background:'+st+'"':'')+'><span>'+a+'</span><b>'+b+'</b><span>'+c+'</span></div>'}
+function detailHtml(){var k=selAcc;
+ if(k==="main")return hero("Основной счёт","Тенге",balance,cardH("Дебетовая карта","•••• 4821","TEMIRLAN KUDAIBERGENOV · 09/29"),'<button class="act" data-to="pay">Перевести</button><button class="act" data-act="myqr">Мой QR</button>');
+ if(k==="dep"&&depOpen)return hero(depName,"до 16% годовых",ac.dep,cardH("Депозит",depName.toUpperCase(),"Проценты начисляются ежемесячно","linear-gradient(135deg,#1FB57A,#0B6E5F)"),'<button class="act" data-act="depgo">Пополнить</button><button class="act" data-act="depclose">Закрыть</button>');
+ if(k.charAt(0)==="x"&&ac[k]!==undefined){var n=+k.slice(1);return hero(nm(k),"Счёт в тенге",ac[k],cardH("Счёт","•••• "+(3010+n*17),"TEMIRLAN KUDAIBERGENOV",pal[(n-1)%pal.length]),'<button class="act" data-xt="'+k+'">Пополнить</button><button class="act" data-xc="'+k+'">Закрыть</button>')}
+ return ""}
+var col={};
+function renderHome(){
+ var cr='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>';
+ var mk=function(v){return hidden?"•••••• ₸":fmt(v)};
+ var mainIt='<div class="it"><div class="mc"></div><div class="ti"><b>Основная карта</b><small>Дебетовая карта •••• 4821</small></div><span class="am">'+mk(balance)+'</span></div>';
+ document.getElementById("hp").innerHTML='<div class="cd"><button class="ch" data-to="bank">Мой банк'+cr+'</button>'+mainIt+'<button class="pl" data-to="bank"><i>+</i>Открыть счёт или депозит</button></div>';
+ var rw=function(key,mc,name,sub,amt){return '<button class="it ib" data-ac="'+key+'"><div class="mc"'+(mc?' style="background:'+mc+'"':'')+'></div><div class="ti"><b>'+name+'</b><small>'+sub+'</small></div><span class="am">'+mkv(amt)+'</span></button>'};
+ var bk='<div class="cd"><div class="ch">Счета и депозиты</div>'+rw("main","","Основная карта","Дебетовая карта •••• 4821",balance);
+ AC.forEach(function(a){if(a[0].charAt(0)!=="x")return;var n=+a[0].slice(1);bk+=rw(a[0],pal[(n-1)%pal.length],a[1],"Счёт •••• "+(3010+n*17),ac[a[0]])});
+ if(depOpen)bk+=rw("dep","linear-gradient(135deg,#1FB57A,#0B6E5F)",depName,"Депозит до 16% годовых",ac.dep);
+ bk+='<button class="pl" data-act="newacc"><i>+</i>Открыть новый счёт</button>'+(depOpen?'':'<button class="pl" data-act="depopen"><i>+</i>Открыть депозит</button>')+'</div>';
+ document.getElementById("bk").innerHTML=bk;document.getElementById("ad").innerHTML=detailHtml();
+ document.getElementById("dof").innerHTML=depOpen?"":'<button class="pl" data-act="depopen"><i>+</i>Открыть депозит</button>';
+ var n=depOpen&&ac.dep>0&&ac.dep!==dismissed?'<div class="nt"><span>💰</span><span style="flex:1"><b>Депозит работает</b><br>На депозите '+fmt(ac.dep)+'. Проценты начисляются ежемесячно: примерно '+fmt(ac.dep*0.16/12)+' в месяц.</span><button class="lnk" data-ndis aria-label="Скрыть">✕</button></div>':'';
+ if(n!==lastHn){document.getElementById("hn").innerHTML=n;lastHn=n}
+}
+function checkFunds(){
+ var now=Date.now()+skew;
+ if(balance>=1){zeroSince=null;notified=false;return}
+ if(zeroSince===null)zeroSince=now;
+ if(!notified&&now-zeroSince>=2*3600000){notified=true;notify("На основном счёте нет средств уже более 2 часов. Пополните депозит, чтобы не прерывать накопление.","top","Пополнить депозит")}}
+function renderExtra(){
+ var inc=0,own=0,exp=0;
+ ops.forEach(function(o){if(o.c==="Свои счета")own+=o.amt||Math.abs(o.s);else if(o.s>0)inc+=o.s;else exp-=o.s});
+ document.getElementById("mr").innerHTML=[["Поступления","+"+fmt(inc)],["Переводы между счетами",fmt(own)],["Всего потрачено за месяц",fmt(exp)],["Остаток на основном счёте",fmt(balance)],["Остаток на депозите",depOpen?fmt(ac.dep):"счёт не открыт"]].map(function(a){return '<div class="tx"><span>'+a[0]+'</span><em>'+a[1]+'</em></div>'}).join("");
+  renderHome();
+ renderNotes();
+}
+setInterval(checkFunds,5000);
 function go(id){
- ["home","pay","svc","hist","me"].forEach(function(s){document.getElementById(s).classList.toggle("hide",s!==id)});
+ ["home","pay","svc","hist","me","bank","acc"].forEach(function(s){document.getElementById(s).classList.toggle("hide",s!==id)});
  document.querySelectorAll("#tabs button").forEach(function(b){
-  if(b.dataset.go===id)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
+  if(b.dataset.go===id||((id==="bank"||id==="acc")&&b.dataset.go==="home"))b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
  window.scrollTo(0,0);
 }
 document.querySelectorAll("[data-go]").forEach(function(b){b.addEventListener("click",function(){go(b.dataset.go)})});
@@ -396,7 +554,7 @@ render();
 var pin="",dots=document.querySelectorAll("#dots i");
 function showLogin(){
  pin="";paintDots();
- document.getElementById("login").classList.remove("hide");
+ document.getElementById("login").style.opacity=1;document.getElementById("login").classList.remove("hide");
  document.querySelector("nav").classList.add("hide");
 }
 function paintDots(){dots.forEach(function(d,i){d.classList.toggle("on",i<pin.length)})}
@@ -407,7 +565,7 @@ document.querySelectorAll("[data-k]").forEach(function(b){b.addEventListener("cl
  paintDots();
  if(pin.length===4){
   if(pin==="1234"){
-   document.getElementById("login").classList.add("hide");
+   var lg=document.getElementById("login");lg.style.opacity=0;setTimeout(function(){lg.classList.add("hide")},350);
    document.querySelector("nav").classList.remove("hide");
    go("home");pin="";paintDots();
   }else{
@@ -419,8 +577,8 @@ document.querySelectorAll("[data-k]").forEach(function(b){b.addEventListener("cl
 })});
 document.getElementById("logout").addEventListener("click",showLogin);
 setTimeout(function(){
- document.getElementById("splash").classList.add("hide");
  showLogin();
+ var sp=document.getElementById("splash");sp.style.opacity=0;setTimeout(function(){sp.classList.add("hide")},400);
 },1900);
 </script>
 </body>
